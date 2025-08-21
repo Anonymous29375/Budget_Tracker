@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Budget Tracker - Home</title>
+    <!-- Link to CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container center">
+        <!-- Page Title -->
+        <h1>Welcome to Budget Tracker</h1>
+        <p>Select a CSV file of your bank transactions to view spending summaries.</p>
+
+        <!-- Display flash error messages if any -->
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class="error">
+              {% for msg in messages %}
+                <li>{{ msg }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <!-- The dropdown to select a CSV file -->
+        <form method="post" action="{{ url_for('report') }}">
+            <label for="csv_file">Choose CSV File:</label><br>
+            <select name="csv_file" required>
+                <!-- Show the csv_files list as options -->
+                {% for file in csv_files %}
+                <option value="{{ file }}">{{ file }}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <button type="submit">View Report</button>
+        </form>
+    </div>
+</body>
+</html>
