@@ -2,15 +2,11 @@
 <html>
 <head>
     <title>Budget Report</title>
-    <!-- Link to CSS file -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container center">
-        <!-- Page title showing which file was used -->
         <h1>Spending Summary for {{ file }}</h1>
-
-        <!-- Summary totals -->
         <h2>Summary</h2>
         <ul class="summary-list">
             <li>Total Income: ${{ '%.2f'|format(data.total_income) }}</li>
@@ -24,7 +20,7 @@
         <img src="{{ url_for('static', filename='chart.png') }}" alt="Spending Chart" class="chart">
         {% endif %}
 
-        <!-- All transactions in a table -->
+        <!-- All transactions placed in a table -->
         <h2>All Transactions</h2>
         <table class="center-table">
             <tr>
@@ -33,7 +29,7 @@
                 <th>Category</th>
                 <th>Amount ($)</th>
             </tr>
-            <!-- Loop through every transaction and display -->
+            <!-- Loop through transactions and display -->
             {% for row in data.transactions %}
             <tr>
                 <td>{{ row['Date'] }}</td>
@@ -44,7 +40,6 @@
             {% endfor %}
         </table>
 
-        <!-- Back button -->
         <br>
         <a href="{{ url_for('home') }}"><button>Back to Home</button></a>
     </div>

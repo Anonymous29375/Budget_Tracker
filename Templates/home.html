@@ -2,16 +2,14 @@
 <html>
 <head>
     <title>Budget Tracker - Home</title>
-    <!-- Link to CSS file -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container center">
-        <!-- Page Title -->
         <h1>Welcome to Budget Tracker</h1>
         <p>Select a CSV file of your bank transactions to view spending summaries.</p>
 
-        <!-- Display flash error messages if any -->
+        <!-- Display flash error messages-->
         {% with messages = get_flashed_messages() %}
           {% if messages %}
             <ul class="error">
